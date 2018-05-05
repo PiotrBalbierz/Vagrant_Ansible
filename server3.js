@@ -4,10 +4,10 @@ var fs = require("fs");
 
 app.get('/:id', function (req, res) {
    fs.readFile( __dirname + "/" + "data.json", 'utf8', function (err, data) {
-      var films = JSON.parse( data );
-      var film = films["film" + req.params.id];
-      console.log(film);
-      res.end( JSON.stringify(film));
+      var movies = JSON.parse(data);
+      var movie = movies["movie" + req.params.id];
+      console.log(movie);
+      res.end( JSON.stringify(movie));
    });
 })
 

@@ -2,19 +2,19 @@ var express = require('express');
 var app = express();
 var fs = require("fs");
 
-var user = {
-   "film4" : {
+var newMovies = {
+   "movie4" : {
       "title" : "Hobbit",
       "id": 4
    }
 }
 
-app.post('/addFilm', function (req, res) {
+app.post('/addMovie', function (req, res) {
    fs.readFile( __dirname + "/" + "data.json", 'utf8', function (err, data) {
-       data = JSON.parse( data );
-       data["film4"] = user["film4"];
-       console.log( data );
-       res.end( JSON.stringify(data));
+       movies = JSON.parse(data);
+       movies["movie4"] = newMovies["movie4"];
+       console.log(movies);
+       res.end(JSON.stringify(movies));
    });
 })
 

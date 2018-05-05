@@ -4,12 +4,12 @@ var fs = require("fs");
 
 var id = 2;
 
-app.delete('/deleteFilm', function (req, res) {
+app.delete('/deleteMovie', function (req, res) {
    fs.readFile( __dirname + "/" + "data.json", 'utf8', function (err, data) {
-       films = JSON.parse(data);
-       delete films["film" + 2];
-       console.log(data);
-       res.end(JSON.stringify(data));
+       movies = JSON.parse(data);
+       delete movies["movie" + 2];
+       console.log(movies);
+       res.end(JSON.stringify(movies));
    });
 })
 
