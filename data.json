@@ -1,0 +1,14 @@
+{
+   "film1" : {
+      "title" : "Siedmiu samurajów",
+	  "id": 1
+   },
+   "film2" : {
+      "title" : "Gwiezdne wojny",
+	  "id": 2
+   },
+   "film3" : {
+      "title" : "Monthy Python i święty Graal",
+	  "id": 3
+   }
+}
