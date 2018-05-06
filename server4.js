@@ -2,12 +2,12 @@ var express = require('express');
 var app = express();
 var fs = require("fs");
 
-var id = 2;
+var idMovie = 2;
 
 app.delete('/deleteMovie', function (req, res) {
    fs.readFile( __dirname + "/" + "data.json", 'utf8', function (err, data) {
        movies = JSON.parse(data);
-       delete movies["movie" + 2];
+       delete movies["movie" + idMovie];
        console.log(movies);
        res.end(JSON.stringify(movies));
    });
