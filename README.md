@@ -43,3 +43,10 @@ Przygotuj własną aplikację implementującą interfejs API REST dotyczącą in
 - zwrócenie jednego z pamiętanych obiektów (np. po numerze lub nazwie)
 - dodanie obiektu do listy
 - usunięcie obiektu z listy (np. po numerze lub nazwie)
+
+### Wskazówki i sugestie
+
+- Zacznik od programu server1.js i przenieś odczyt pliku z danymi poza metodę GET / (tak żeby odczyt pliku był wykonywany raz przy uruchamianiu serwera, a nie przy każdym zapytaniu)
+- Dodaj funkcję odczytu obiektu o zadanym numerze (z server3.js)
+- Dodaj funkcję usunięcia obiektu o wybranym numerze (z server4.js)
+- Dodaj funkcję dodawania nowego obiektu (z server2.js i server5.js)
