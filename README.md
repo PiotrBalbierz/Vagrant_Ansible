@@ -11,6 +11,11 @@ vagrant ssh
 [vagrant@localhost]$ cd /vagrant
 [vagrant@localhost vagrant]$ node start.js
 ```
+Aby zatrzymać serwer node naciśnij Ctrl-C.
+
+Aby wyjść z Vagranta naciśnij Ctrl-D.
+
+Aby zatrzymać maszynę wirtualną (po wyjściu z Vagranta) wpisz `vagrant halt`
 
 ### Uruchomienie prostego serwera HTTP
 
@@ -18,7 +23,7 @@ Uruchom najprostszy serwer HTTP, używający modułu *http*:
 ```
 $ node simplewebserver.js
 ```
-Przetestuj jego działanie korzystając z przeglądarki oraz programu `curl`: 
+Przetestuj jego działanie korzystając z przeglądarki oraz programu `curl` (program `curl` uruchom w innym oknie niż serwer): 
 ```
 > curl http://localhost:8081/
 > curl http://localhost:8081/index.html
