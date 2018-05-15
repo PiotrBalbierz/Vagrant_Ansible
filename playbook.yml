@@ -1,0 +1,43 @@
+---
+# This playbook deploys what previously was deployed by a shell script.
+# file: ./playbook.yml
+
+- hosts: all
+  remote_user: vagrant
+  tasks:
+
+    # Upgrade all packages
+    # - name: upgrade all packages
+    #   yum: name='*' update_cache=yes state=latest
+    #   become: yes
+    #   become_method: sudo
+
+    # Install Extra Packages for Enterprise Linux (EPEL)
+    - name: install Extra Packages for Enterprise Linux (EPEL)
+      yum: name=epel-release state=present
+      become: yes
+      become_method: sudo
+    
+    # Install required packages
+    - name: install required packages
+      yum: state=present name={{ item }}
+      with_items:
+        - nano
+        - gcc
+        - c++
+        - make
+        - node
+        - npm
+      become: yes
+      become_method: sudo
+
+    # Install required NPM packages
+    - name: install required NPM packages
+      npm:
+        name: express
+        path: /vagrant
+        state: present
+      become: yes
+      become_user: vagrant
+      become_method: su
+...
