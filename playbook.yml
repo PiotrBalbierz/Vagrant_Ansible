@@ -33,11 +33,12 @@
 
     # Install required NPM packages
     - name: install required NPM packages
-      npm:
-        name: express
-        path: /vagrant
-        state: present
+      command: npm install express -no-bin-links chdir=/vagrant
+      # npm:
+      #   name: express
+      #   path: /vagrant
+      #   state: present
       become: yes
       become_user: vagrant
-      become_method: su
+      # become_method: su
 ...
