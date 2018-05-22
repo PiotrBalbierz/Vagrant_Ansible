@@ -52,7 +52,7 @@
         name: app_webserver
         image: meanjs/mean
         state: started
-        link:  app_database:db_1
+        links:  app_database:db_1
         exposed_ports:
           - 3000
         published_ports: 8088:3000
