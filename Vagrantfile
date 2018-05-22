@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
   # NOTE: This will enable public access to the opened port
   
 	config.vm.network "forwarded_port", guest: 80, host: 8080
-	config.vm.network "forwarded_port", guest: 8081, host: 8081
+	config.vm.network "forwarded_port", guest: 8088, host: 8088
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
@@ -60,7 +60,7 @@ Vagrant.configure("2") do |config|
 		vb.gui = false
   
 		# Customize the name of the VM:
-		vb.name = "SimpleWebserver"
+		vb.name = "SimpleWebserver_docker"
 		
 		# Customize the number of CPU cores on the VM:
 		vb.cpus = 2

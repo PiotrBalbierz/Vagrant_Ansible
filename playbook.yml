@@ -4,41 +4,82 @@
 
 - hosts: all
   remote_user: vagrant
+  become: yes
+  become_method: sudo
+  
   tasks:
 
     # Upgrade all packages
-    # - name: upgrade all packages
-    #   yum: name='*' update_cache=yes state=latest
-    #   become: yes
-    #   become_method: sudo
+    - name: upgrade all packages
+      yum: name='*' update_cache=yes state=latest
+      # become: yes
+      # become_method: sudo
 
     # Install Extra Packages for Enterprise Linux (EPEL)
     - name: install Extra Packages for Enterprise Linux (EPEL)
       yum: name=epel-release state=present
-      become: yes
-      become_method: sudo
+      # become: yes
+      # become_method: sudo
     
-    # Install required packages
-    - name: install required packages
+    # Install Docker
+    - name: install Docker
       yum: state=present name={{ item }}
       with_items:
-        - nano
-        - gcc
-        - gcc-c++
-        - make
-        - nodejs
-        - npm
-      become: yes
-      become_method: sudo
+        - docker
+        - docker-compose
+      # become: yes
+      # become_method: sudo
+
+    # Start Docker deamon
+    - name: start Docker deamon
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    # Create MongoDB container
+    - name: create MongoDB container
+      docker_container:
+        name: app_database
+        image: mongo:latest
+        state: started
+        exposed_ports:
+          - 27017
+
+     # Create MEAN webserver container
+    - name: create MEAN webserver container
+      docker_container:
+        name: app_webserver
+        image: meanjs/mean
+        state: started
+        link:  app_database:db_1
+        exposed_ports:
+          - 3000
+        published_ports: 8088:3000
+
+    
+
+    # Install required packages
+    # - name: install required packages
+    #   yum: state=present name={{ item }}
+    #   with_items:
+    #     - nano
+    #     - gcc
+    #     - gcc-c++
+    #     - make
+    #     - nodejs
+    #     - npm
+    #   become: yes
+    #   become_method: sudo
 
     # Install required NPM packages
-    - name: install required NPM packages
-      command: npm install express -no-bin-links chdir=/vagrant
-      # npm:
-      #   name: express
-      #   path: /vagrant
-      #   state: present
-      become: yes
-      become_user: vagrant
-      # become_method: su
+    # - name: install required NPM packages
+    #   command: npm install express -no-bin-links chdir=/vagrant
+    #   # npm:
+    #   #   name: express
+    #   #   path: /vagrant
+    #   #   state: present
+    #   become: yes
+    #   become_user: vagrant
+    #   # become_method: su
 ...
